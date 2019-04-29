@@ -35,10 +35,10 @@ public class Set{
 	}
 	
 	public String toString(){
-		String ret = "";
-		ret = ret + "\t Reps: " + this.getAmountOfReps() + "\n";
-		ret = ret + "\t Weight: " + this.getWeight() + "\n\n";
-		return ret;
+		StringBuilder ret = new StringBuilder();
+		ret.append("\t Reps: " + this.getAmountOfReps() + "\n");
+		ret.append("\t Weight: " + this.getWeight() + "\n\n");
+		return ret.toString();
 	}
 
 }
