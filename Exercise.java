@@ -25,11 +25,11 @@ public class Exercise{
 
 	}
 	
-	public Exercise(Date date, String exerciseName, String musselCategory, Set[] set){
-		this.exerciseName = nameOfExercise;
+	public Exercise(Date date, String exerciseName, String musselCategory, Set[] sets){
+		this.exerciseName = exerciseName;
 		this.musselCategory = musselCategory;
 		this.date = date;
-		this.set = set;
+		this.sets = sets;
 	}
 
 	public String getExerciseName(){
@@ -54,6 +54,25 @@ public class Exercise{
 	
 	public void setDate(Date date){
 		this.date = date;
+	}
+	
+	public Set[] getSets(){
+		return sets;
+	}
+	
+	public String toString(){
+		//This is all bad practice, should use a string builder, but fuck it, it will get optimized out.
+		String ret = "";
+		ret = ret + "Date: " + this.getDate() + "\n";
+		ret = ret + "Name: " + this.getExerciseName() + "\n";
+		ret = ret + "Muscle Group: " + this.getMusselCategory() + "\n";
+		ret = ret + "Sets:" + "\n";
+		Set[] tempSets = this.getSets();
+		for(int i = 0; i < tempSets.length; i++){
+			ret = ret + tempSets[i].toString();
+		}
+	
+		return ret;
 	}
 
 }

@@ -33,5 +33,12 @@ public class Set{
 	public void setWeight(double weight){
 		this.weight = weight;
 	}
+	
+	public String toString(){
+		String ret = "";
+		ret = ret + "\t Reps: " + this.getAmountOfReps() + "\n";
+		ret = ret + "\t Weight: " + this.getWeight() + "\n\n";
+		return ret;
+	}
 
 }
