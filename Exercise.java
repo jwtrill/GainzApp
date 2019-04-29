@@ -5,7 +5,7 @@ From what I can tell an exercise consists of
 
 Date
 Name/type
-Mussel category
+muscle category
 sets:
 	sets consist of:
 		Weight(sometimes is irrelevant)
@@ -16,7 +16,7 @@ public class Exercise{
 	
 	private Date date;
 	private String exerciseName;
-	private String musselCategory;
+	private String muscleCategory;
 	private Set[] sets;
 	
 	
@@ -25,9 +25,9 @@ public class Exercise{
 
 	}
 	
-	public Exercise(Date date, String exerciseName, String musselCategory, Set[] sets){
+	public Exercise(Date date, String exerciseName, String muscleCategory, Set[] sets){
 		this.exerciseName = exerciseName;
-		this.musselCategory = musselCategory;
+		this.muscleCategory = muscleCategory;
 		this.date = date;
 		this.sets = sets;
 	}
@@ -40,12 +40,12 @@ public class Exercise{
 		this.exerciseName = newExerciseName;
 	}
 	
-	public String getMusselCategory(){
-		return musselCategory;
+	public String getMuscleCategory(){
+		return muscleCategory;
 	}
 	
-	public void setMusselCategory(String musselCategory){
-		this.musselCategory = musselCategory;
+	public void setMuscleCategory(String muscleCategory){
+		this.muscleCategory = muscleCategory;
 	}
 	
 	public Date getDate(){
@@ -61,18 +61,18 @@ public class Exercise{
 	}
 	
 	public String toString(){
-		//This is all bad practice, should use a string builder, but fuck it, it will get optimized out.
+		//I am capable of basic string manipulation... swag
 		StringBuilder ret = new StringBuilder();
 		ret.append("Date: " + this.getDate() + "\n");
 		ret.append("Name: " + this.getExerciseName() + "\n");
-		ret.append("Muscle Group: " + this.getMusselCategory() + "\n");
+		ret.append("Muscle Group: " + this.getMuscleCategory() + "\n");
 		ret.append("Sets:" + "\n");
 		Set[] tempSets = this.getSets();
 		for(int i = 0; i < tempSets.length; i++){
 			ret.append(tempSets[i].toString());
 		}
 	
-		return ret;
+		return ret.toString();
 	}
 
 }
