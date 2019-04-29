@@ -62,14 +62,14 @@ public class Exercise{
 	
 	public String toString(){
 		//This is all bad practice, should use a string builder, but fuck it, it will get optimized out.
-		String ret = "";
-		ret = ret + "Date: " + this.getDate() + "\n";
-		ret = ret + "Name: " + this.getExerciseName() + "\n";
-		ret = ret + "Muscle Group: " + this.getMusselCategory() + "\n";
-		ret = ret + "Sets:" + "\n";
+		StringBuilder ret = new StringBuilder();
+		ret.append("Date: " + this.getDate() + "\n");
+		ret.append("Name: " + this.getExerciseName() + "\n");
+		ret.append("Muscle Group: " + this.getMusselCategory() + "\n");
+		ret.append("Sets:" + "\n");
 		Set[] tempSets = this.getSets();
 		for(int i = 0; i < tempSets.length; i++){
-			ret = ret + tempSets[i].toString();
+			ret.append(tempSets[i].toString());
 		}
 	
 		return ret;
