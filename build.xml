@@ -1,29 +1,47 @@
 <?xml version = "1.0"?>
 <project name = "gainzapp" basedir = "." default = "build">
+   <property file = "build.properties"/>
    <property name = "src.dir" value = "src"/>
-   <property name = "dist.dir" value = "dist"/>
    <property name = "build.dir" value = "build"/>
    <property name = "lib.dir" value = "lib"/>
 
-<echo>jar step</echo>
-   <path id = "master-classpath">
-      <fileset dir = "${lib.dir}">
-         <include name = "*.jar"/>
-      </fileset>
-      
-      <pathelement path = "${build.dir}"/>
-   </path>
+<!--RUNS THE CODE-->
+<target name = "run">
+<!--<java classname="Main" classpath="./build" fork="true"/>-->
+<java jar="${lib.dir}/gainzapp.jar" fork="true"/>
+</target>
+
+<!-- DEPLOY-->
+<target name = "deploy" depends = "build" description = "Deploy application">
+      <copy todir = "${deploy.path}" preservelastmodified = "true">
+         <fileset dir = "${build.dir}">
+            <include name = "**/*.*"/>
+         </fileset>
+      </copy>
+   </target>
+
+<!-- BUILD-JAR-->
+  <target name = "build-jar">
+   <jar update="no" destfile = "${lib.dir}/gainzapp.jar">
+      <fileset dir="${build.dir}"/>
+      <zipfileset includes="**/*.class" src="lib/gainzapp.jar"/>
+      <manifest>
+         <attribute name = "Main-Class" value = "Main"/>
+      </manifest>
+   </jar>
+</target>
    
-<echo>build step</echo>
+<!-- BUILD-->
    <target name = "build" description = "Compile source tree java files">
       <mkdir dir = "${build.dir}"/>
-      <javac destdir = "${build.dir}" source = "7" target = "7">
+      <javac includeantruntime = "false" destdir = "${build.dir}" source = "7" 
+      target = "7" debug = "true" deprecation = "false" optimize = "false" 
+      failonerror = "true">
          <src path = "${src.dir}"/>
-         <classpath refid = "master-classpath"/>
       </javac>
    </target>
    
- <echo>clean step</echo>
+<!-- CLEAN-->
    <target name = "clean" description = "Clean output directories">
       <delete>
          <fileset dir = "${build.dir}">
@@ -31,4 +49,6 @@
          </fileset>
       </delete>
    </target>
+   
+   
 </project>
