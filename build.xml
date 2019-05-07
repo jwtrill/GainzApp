@@ -4,11 +4,24 @@
    <property name = "src.dir" value = "src"/>
    <property name = "build.dir" value = "build"/>
    <property name = "lib.dir" value = "lib"/>
+   <property name = "classes.dir" value = "build/classes"/>
+   
+<path id="src.java">
+    <fileset dir="${src.dir}">
+        <include name="**.*java"/>
+    </fileset>
+</path>
+
+<path id="lib.jar">
+    <fileset dir="${lib.dir}">
+        <include name="**.*jar"/>
+    </fileset>
+</path>
 
 <!--RUNS THE CODE-->
 <target name = "run">
 <!--<java classname="Main" classpath="./build" fork="true"/>-->
-<java jar="${lib.dir}/gainzapp.jar" fork="true"/>
+<java jar="${build.dir}/gainzapp.jar" fork="true"/>
 </target>
 
 <!-- DEPLOY-->
@@ -22,8 +35,9 @@
 
 <!-- BUILD-JAR-->
   <target name = "build-jar">
-   <jar update="no" destfile = "${lib.dir}/gainzapp.jar">
-      <fileset dir="${build.dir}"/>
+   <jar update="no" destfile = "${build.dir}/gainzapp.jar">
+      <fileset dir="${classes.dir}"/>
+      <zipgroupfileset dir="${lib.dir}" includes="**/*.jar" />
       <manifest>
          <attribute name = "Main-Class" value = "Main"/>
       </manifest>
@@ -32,18 +46,21 @@
    
 <!-- BUILD-->
    <target name = "build" description = "Compile source tree java files">
-      <mkdir dir = "${build.dir}"/>
-      <javac includeantruntime = "false" destdir = "${build.dir}" source = "7" 
+      <javac includeantruntime = "false" destdir = "${classes.dir}" source = "7" 
       target = "7" debug = "true" deprecation = "false" optimize = "false" 
       failonerror = "true">
          <src path = "${src.dir}"/>
+         <classpath>
+            <path refid="src.java"/>
+            <path refid="lib.jar"/>
+         </classpath>
       </javac>
    </target>
    
 <!-- CLEAN-->
    <target name = "clean" description = "Clean output directories">
       <delete>
-         <fileset dir = "${build.dir}">
+         <fileset dir = "${classes.dir}">
             <include name = "**/*.class"/>
          </fileset>
       </delete>
