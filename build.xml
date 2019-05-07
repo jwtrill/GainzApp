@@ -24,7 +24,6 @@
   <target name = "build-jar">
    <jar update="no" destfile = "${lib.dir}/gainzapp.jar">
       <fileset dir="${build.dir}"/>
-      <zipfileset includes="**/*.class" src="lib/gainzapp.jar"/>
       <manifest>
          <attribute name = "Main-Class" value = "Main"/>
       </manifest>
