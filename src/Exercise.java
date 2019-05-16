@@ -60,6 +60,50 @@ public class Exercise{
 		return sets;
 	}
 	
+	
+	
+	/*
+{
+ 	"date": "Thu May 16 17:45:03 UTC 2019",
+ 	"exerciseName": "Hammer Curls",
+ 	"muscleCategory": "Bitch strings",
+ 	"sets": [{
+ 			"reps": "420",
+ 			"weight": "69.0"
+ 		},
+ 		{
+ 			"reps": "69",
+ 			"weight": "420.0"
+ 		}
+ 	]
+ }
+*/
+	public String toJSONString(){
+		//return string
+		StringBuilder ret = new StringBuilder();
+		//get sets
+		Set[]tempSets = this.getSets();
+		
+		ret.append("{\n" + "\"date\"" + " : \"" + this.getDate() + "\",\n"
+	    + "\"exerciseName\"" + " : \"" + this.getExerciseName() + "\",\n"
+	    + "\"muscleCategory\"" + " : \"" + this.getMuscleCategory() + "\",\n");
+	    
+	    ret.append("\"sets\"" + " : ");
+	    ret.append("[");
+	    
+	    //Does order matter for sets??
+	    for (int i = 0; i < tempSets.length; i++) {
+	       ret.append(tempSets[i].toJSONString());
+	       if(i != tempSets.length -1){
+				ret.append(",\n");
+			}
+	    }
+	    ret.append("]");
+	    ret.append("\n}");
+	    
+	    return ret.toString();
+	}
+	
 	public String toString(){
 		//I am capable of basic string manipulation... swag
 		StringBuilder ret = new StringBuilder();
@@ -71,8 +115,9 @@ public class Exercise{
 		for(int i = 0; i < tempSets.length; i++){
 			ret.append(tempSets[i].toString());
 		}
-	
 		return ret.toString();
 	}
 
 }
+
+
