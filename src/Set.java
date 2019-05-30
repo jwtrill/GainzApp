@@ -36,6 +36,17 @@ public class Set{
 		this.weight = weight;
 	}
 	
+	public String toJSONString(){
+		
+		StringBuilder ret = new StringBuilder();
+		
+		ret.append("{\n");
+		ret.append("\"reps\"" + " : \"" + this.getAmountOfReps() + "\",\n");
+		ret.append("\"weight\"" + " : \"" + this.getWeight() + "\"\n}");
+		
+		return ret.toString();
+	}
+	
 	public String toString(){
 		StringBuilder ret = new StringBuilder();
 		ret.append("\t Reps: " + this.getAmountOfReps() + "\n");
