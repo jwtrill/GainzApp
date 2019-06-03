@@ -14,7 +14,7 @@ sets:
 
 public class Exercise{
 	
-	private Date date;
+	private String date;
 	private String exerciseName;
 	private String muscleCategory;
 	private Set[] sets;
@@ -25,7 +25,7 @@ public class Exercise{
 
 	}
 	
-	public Exercise(Date date, String exerciseName, String muscleCategory, Set[] sets){
+	public Exercise(String date, String exerciseName, String muscleCategory, Set[] sets){
 		this.exerciseName = exerciseName;
 		this.muscleCategory = muscleCategory;
 		this.date = date;
@@ -48,11 +48,11 @@ public class Exercise{
 		this.muscleCategory = muscleCategory;
 	}
 	
-	public Date getDate(){
+	public String getDate(){
 		return date;
 	}
 	
-	public void setDate(Date date){
+	public void setDate(String date){
 		this.date = date;
 	}
 	
