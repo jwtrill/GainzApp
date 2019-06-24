@@ -1,0 +1,1 @@
+{"date":"2019-06-24T20:19:48.857Z","exerciseName":"Hammer Curls","muscleCategory":"Bitch strings","sets":[{"amountOfReps":420,"weight":69.0},{"amountOfReps":69,"weight":420.0}]}

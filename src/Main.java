@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.io.*;
 
 public class Main {
 	
@@ -28,8 +29,41 @@ public class Main {
         
         Exercise newExercise = gson.fromJson(testExercise.toJSONString(), Exercise.class);
         
-        System.out.println("this is the fromJson and then toJSONString output");
-        System.out.println(newExercise.toJSONString());
+        System.out.println("this is the gson.fromJson and then gson.toJson output");
+        System.out.println(gson.toJson(testExercise));
+        
+        //write a JSON file to gainzapp folder
+        try {
+        File myFile = new File("myjsonstuff.txt");
+        myFile.createNewFile();
+        FileOutputStream fOut = new FileOutputStream(myFile);
+        OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
+        myOutWriter.append(gson.toJson(testExercise));
+        myOutWriter.close();
+        fOut.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        //read a JSON file from gainzapp folder
+        try {
+        File myFile = new File("myjsonstuff.txt");
+        FileInputStream fIn = new FileInputStream(myFile);
+        BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
+        String line = "";
+        String readJsonString = ""; //Holds the text
+        while ((line = myReader.readLine()) != null) 
+        {
+            readJsonString += line ;
+        }
+        myReader.close();
+        System.out.println("THIS IS FROM THE JSON READER!!!");
+        System.out.println(readJsonString);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 	
 
